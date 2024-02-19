@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+
+  main:
+    #Image upon I will build my container. No need to customize image name, else I would have to tell the name of the original image somewhere else.
+    image: node:alpine
+    #Name of the container. Defaulf value is directory name, or service name.
+    # container_name: docker-node
+    build: .
+    working_dir: /usr/app
+    #package.json script: "npm install && nodemon src/server.js"
+    command: npm run start:docker_dev
+    #Folders of my local directory the container will have access (give root access to read the package.json file).
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    #This service has native access to the ".env" file. No need of this:
+    # env_file:
+    #   - .env
+    #Var used by this service are named like in the ".env" file. No need of this:
+    # environment:
+    #   SERVER_PORT: ${SERVER_PORT}
+    #But I still have to expose (publish) the containers ports:
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"

@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+
+  #This service (server.js, based on Node) could run @ localhost, outside the Docker container. This way, the user could run it only after "pg-db" is OK, without service dependency or health checks.
+  app:
+    image: node:alpine
+    # container_name: app-container
+    build: .
+    working_dir: /usr/app
+    #Run package.json script: "npm install && nodemon src/server.js"
+    command: npm run start:docker_dev
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    depends_on:
+      pg-db:
+        condition: service_healthy
+
+  pg-db:
+    image: postgres
+    # container_name: postgres-container
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      # POSTGRES_HOST: ${DATABASE_HOST}   #Docker service uses a default value for this field
+      # POSTGRES_PORT: ${DATABASE_PORT}   #Docker service uses a default value for this field
+      POSTGRES_DB: ${DATABASE_NAME}
+    #Data saved outside the Docker container, on my local PC - add this dir to the .gitignore / .dockerignore files:
+    volumes:
+       - ./pg-data:/var/lib/postgresql/data
+    #No need to expose (publish) the postgres port out of the container, if the main service (here named "app") is also inside the same container:
+    # ports:
+    #   - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      timeout: 10s
+      retries: 5

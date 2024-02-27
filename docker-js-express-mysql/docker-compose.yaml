@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+
+  app:
+    image: node:alpine
+    # container_name: app-container
+    build: .
+    working_dir: /usr/app
+    command: npm run start:docker_dev
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "4000:4000"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+
+  mysql-db:
+    image: mysql
+    # container_name: mysql-container
+    #V1 - Give the service access to the entire ".env" file:
+    # env_file:
+    #   - .env
+    #V2 - Map vars one by one, if service vars are not named like ".env" file vars:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      # MYSQL_USER: ${DATABASE_USER}          #Docker service uses a default value for this field
+      # MYSQL_PASSWORD: ${DATABASE_PASSWORD}  #Docker service uses a default value for this field
+      # MYSQL_HOST: ${DATABASE_HOST}          #Docker service uses a default value for this field
+      # MYSQL_PORT: ${DATABASE_PORT}          #Docker service uses a default value for this field
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    #No need to expose (publish) the mysql port out of the container, if the main service (here named "app") is also inside the same container:
+    # ports:
+    # - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5

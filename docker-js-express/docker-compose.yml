@@ -10,7 +10,7 @@ services:
     build: .
     working_dir: /usr/app
     #Run package.json script: "npm install && nodemon src/server.js"
-    command: npm run start:docker_dev
+    command: npm run start:compose_dev
     #Folders of my local directory the container will have access (give root access to read the package.json file).
     volumes:
       - .:/usr/app

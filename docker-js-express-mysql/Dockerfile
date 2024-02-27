@@ -1,4 +1,4 @@
-FROM postgres
+FROM mysql
 
 WORKDIR /usr/app
 
@@ -8,5 +8,5 @@ WORKDIR /usr/app
 #V2 - Passing entire .env file in the docker run option: "--env-file .env"
 
 #Expose the container port, but does not publish it to a host port.
-#Have to use the docker run option "--publish host_port:container_port" like: "-p 5432:5432"
-# EXPOSE 5432 
+#Have to use the docker run option "--publish host_port:container_port" like: "-p 3306:3306"
+# EXPOSE 3306 

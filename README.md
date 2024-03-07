@@ -3,6 +3,9 @@
 ## 🚀 Projeto
 Exemplos de projetos rodando em containers Docker.
 
+<div align="center">
+  <img width="50%" src="/github_assets/docker_logo.png" alt="docker logo"/>
+</div>
 
 ## 🛠️ Tecnologias
 - [Docker](https://www.docker.com)
@@ -33,7 +36,7 @@ Exemplos de projetos rodando em containers Docker.
   $ npm run start:dev          #start the project
 ```
 
-- Run @ Docker (with "docker-compose.yml"):
+- Run @ Docker (with "docker-compose.yaml"):
 ```bash
   $ docker compose up          #build the image and runs the container
   $ ctrl + C                   #stop the container

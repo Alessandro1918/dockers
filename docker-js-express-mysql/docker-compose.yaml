@@ -7,7 +7,7 @@ services:
     # container_name: app-container
     build: .
     working_dir: /usr/app
-    command: npm run start:docker_dev
+    command: npm run start:compose_dev
     volumes:
       - .:/usr/app
       - /usr/app/node_modules
@@ -20,10 +20,7 @@ services:
   mysql-db:
     image: mysql
     # container_name: mysql-container
-    #V1 - Give the service access to the entire ".env" file:
-    # env_file:
-    #   - .env
-    #V2 - Map vars one by one, if service vars are not named like ".env" file vars:
+    #V1 - Map vars one by one, if service vars are not named like ".env" file vars:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       # MYSQL_USER: ${DATABASE_USER}          #Docker service uses a default value for this field
@@ -31,6 +28,9 @@ services:
       # MYSQL_HOST: ${DATABASE_HOST}          #Docker service uses a default value for this field
       # MYSQL_PORT: ${DATABASE_PORT}          #Docker service uses a default value for this field
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #V2 - Give the service access to the entire ".env" file:
+    # env_file:
+    #   - .env
     volumes:
       - ./mysql-data:/var/lib/mysql
     #No need to expose (publish) the mysql port out of the container, if the main service (here named "app") is also inside the same container:

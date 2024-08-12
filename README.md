@@ -33,7 +33,7 @@ Exemplos de projetos rodando em containers Docker.
 - Run @ localhost:
 ```bash
   $ npm install                #download dependencies
-  $ npm run start:dev          #start the project
+  $ npm run start:dev          #start the project by running the package.json script
 ```
 
 - Run @ Docker (with "docker-compose.yaml"):
@@ -46,10 +46,10 @@ Exemplos de projetos rodando em containers Docker.
 - Run @ Docker (with "Dockerfile"):
 ```bash
   $ docker build -t name-of-docker-image .             #build the image
-  $ docker run -it -p 4000:4000 name-of-docker-image   #run the container - interactive
-  $ docker run -d -p 4000:4000 name-of-docker-image    #run the container - detached
-  $ ctrl + C                                           #stop the interactive container
-  $ docker stop name-of-docker-image                   #stop the detached container
+  $ docker run -it -p 4000:4000 name-of-docker-image   #run the container - foreground
+  $ docker run -d -p 4000:4000 name-of-docker-image    #run the container - background
+  $ ctrl + C                                           #stop the foreground container
+  $ docker stop name-of-docker-image                   #stop the background container
 ```
 
 ## ⭐ Like, Subscribe, Follow!

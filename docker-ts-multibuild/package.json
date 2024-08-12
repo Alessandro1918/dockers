@@ -1,0 +1,25 @@
+{
+  "name": "ci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev_js": "node src/server.js",
+    "dev_ts": "tsx watch src/server.ts",
+    "compose_dev_js": "npm install && node src/server.js",
+    "compose_dev_ts": "npm install && tsx watch src/server.ts"
+  },
+  "author": "Ale B. C.",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.12",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}

@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+
+  api:
+    image: node:alpine
+    # container_name: api
+    build: .
+    working_dir: /usr/app
+    command: npm run compose_dev_ts
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - journey
+
+  # postgres:
+  #   image: postgres:16.2-alpine3.19
+  #   container_name: api-db
+  #   ports:
+  #     - ${JOURNEY_DATABASE_PORT}:5432
+  #   environment:
+  #     POSTGRES_USER: ${JOURNEY_DATABASE_USER} 
+  #     POSTGRES_PASSWORD: ${JOURNEY_DATABASE_PASSWORD}
+  #     POSTGRES_DB: ${JOURNEY_DATABASE_NAME}
+  #   networks:
+  #     - journey
+
+networks:
+  journey:
+    driver: bridge

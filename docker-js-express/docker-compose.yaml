@@ -7,9 +7,11 @@ services:
     image: node:alpine
     #Name of the container. Defaulf value is directory name, or service name.
     # container_name: docker-node
-    build: .
+    #Build context = ".": use instructions from Dockerfile (like RUN install, COPY, etc.) to build the image.
+    # build: .
+    #TODO - Add description
     working_dir: /usr/app
-    #Run package.json script: "npm install && nodemon src/server.js"
+    #Since I'm not using Dockerfile to run "npm install", the command here will have to: 1. install dependencies, and 2. run the app.
     command: npm run start:compose_dev
     #Folders of my local directory the container will have access (give root access to read the package.json file).
     volumes:
@@ -18,7 +20,7 @@ services:
     #This service has native access to the ".env" file. No need of this:
     # env_file:
     #   - .env
-    #Var used by this service are named like in the ".env" file. No need of this:
+    #Or this:
     # environment:
     #   SERVER_PORT: ${SERVER_PORT}
     #But I still have to expose (publish) the containers ports:

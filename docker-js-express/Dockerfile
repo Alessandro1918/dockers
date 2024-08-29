@@ -18,3 +18,6 @@ RUN npm install
 COPY . .
 
 CMD [ "npm", "run", "start:dev" ]
+#Same as:
+# ENTRYPOINT [ "node" ]
+# CMD [ "src/server.js" ]

@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
 
+  #This service (server.js, based on Node) could run @ localhost, outside the Docker container. This way, the user could run it only after “db" service is OK, without service dependency or health checks.
   app:
     image: node:alpine
     # container_name: app-container

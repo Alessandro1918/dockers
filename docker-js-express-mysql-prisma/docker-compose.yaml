@@ -15,7 +15,8 @@ services:
       - .env
     volumes:
       - ./mysql-data:/var/lib/mysql
-    #No need to expose (publish) the mysql port out of the container, if the main service (here named "app") is also inside the same container:
+    #Here, unlike previous examples, the “app” service is running @ localhost, and the “db” service is (the only service) running in the docker container. So, this time I do have to expose (publish) the ports out of the container.
+    #Also, I could have added “DATABASE_PORT” @ the .env file, to avoid leaving the port number hardcoded here.
     ports:
     - "3306:3306"
     # healthcheck:

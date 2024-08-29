@@ -5,26 +5,26 @@ services:
   app:
     image: python:3
     # container_name: app-container
+    #Build context = ".": use instructions from Dockerfile (pip instal requirements.txt, for ex.) to build the image.
+    #If so, this file's "command" (run server.py) will alse be overwriten. 
     build: .
     working_dir: /usr/app
-    # command: pip install -r requirements.txt
-    command: python src/server.py
-    # command: ["pip", "install", "-r", "requirements.txt"]
-    # command: ["pip", "install", "-r", "requirements.txt", "python", "server.py"]
-    # command: ["pip install -r requirements.txt && python server.py"]
+    # command: pip install --no-cache-dir  -r requirements.txt
+    # command: python src/server.py
     volumes:
       - .:/usr/app
     ports:
       - "${PORT}:${PORT}"
     # depends_on:
     #   requirements:
-    #     condition: service_healthy
     #     condition: service_completed_successfully
 
+  #TODO - figure it out service dependency
   # requirements:
   #   image: python:3
   #   # build: .
   #   working_dir: /usr/app
-  #   command: pip install -r requirements.txt
+  #   # command: pip install --no-cache-dir -r requirements.txt
+  #   # command: ["pip", "install", "--no-cache-dir", "-r", "requirements.txt"]
   #   volumes:
   #     - .:/usr/app

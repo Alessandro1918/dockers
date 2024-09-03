@@ -1,4 +1,4 @@
-FROM mysql
+FROM --platform=linux/arm64 mysql
 
 WORKDIR /usr/app
 

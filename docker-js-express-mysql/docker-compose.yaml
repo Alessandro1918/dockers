@@ -6,9 +6,8 @@ services:
   app:
     image: node:alpine
     # container_name: app-container
-    build: .
     working_dir: /usr/app
-    command: npm run start:compose_dev
+    command: npm run compose_dev
     volumes:
       - .:/usr/app
       - /usr/app/node_modules
@@ -20,6 +19,7 @@ services:
 
   mysql-db:
     image: mysql
+    platform: linux/arm64
     # container_name: mysql-container
     #V1 - Map vars one by one, if service vars are not named like ".env" file vars:
     environment:

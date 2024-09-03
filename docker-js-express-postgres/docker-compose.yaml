@@ -6,10 +6,9 @@ services:
   app:
     image: node:alpine
     # container_name: app-container
-    build: .
     working_dir: /usr/app
     #Run package.json script: "npm install && nodemon src/server.js":
-    command: npm run start:compose_dev
+    command: npm run compose_dev
     volumes:
       - .:/usr/app
       - /usr/app/node_modules

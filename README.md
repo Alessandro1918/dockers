@@ -36,7 +36,8 @@ Exemplos de projetos rodando em containers Docker.
 ```bash
   $ npm install                #download dependencies
   $ npx prisma migrate dev     #if using prisma: init db file and create tables 
-  $ npm run start:dev          #start the project by running the package.json script
+  $ npm run dev                #if javascript: start the project by running the package.json script
+  $ python src/server.py       #if python: start the project by running the src/server.py file
 ```
 
 - Run @ Docker (with "docker-compose.yaml"):

@@ -11,6 +11,8 @@ Exemplos de projetos rodando em containers Docker.
 - [Docker](https://www.docker.com)
 - [Node.js](https://nodejs.org/en)
 - [ExpressJS](https://expressjs.com)
+- [Python](https://www.python.org)
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/#)
 - [Postgres](https://www.postgresql.org)
 - [MySql](https://www.mysql.com)
 
@@ -33,6 +35,7 @@ Exemplos de projetos rodando em containers Docker.
 - Run @ localhost:
 ```bash
   $ npm install                #download dependencies
+  $ npx prisma migrate dev     #if using prisma: init db file and create tables 
   $ npm run start:dev          #start the project by running the package.json script
 ```
 
@@ -45,11 +48,15 @@ Exemplos de projetos rodando em containers Docker.
 
 - Run @ Docker (with "Dockerfile"):
 ```bash
-  $ docker build -t name-of-docker-image .             #build the image
-  $ docker run -it -p 4000:4000 name-of-docker-image   #run the container - foreground
-  $ docker run -d -p 4000:4000 name-of-docker-image    #run the container - background
-  $ ctrl + C                                           #stop the foreground container
-  $ docker stop name-of-docker-image                   #stop the background container
+  $ docker build -t name-of-docker-image .     #build the image
+  $ docker run [flags] name-of-docker-image    #run the container
+                                               #flags:
+                                               # -it: run in the foreground
+                                               # -d: run in the background
+                                               # -p 4000:4000: map port used by the host -> port used by the container
+                                               # -env-file .env: get environment vars from the ".env" file
+  $ ctrl + C                                   #stop the foreground container
+  $ docker stop name-of-docker-image           #stop the background container
 ```
 
 ## ⭐ Like, Subscribe, Follow!

@@ -4,6 +4,11 @@ services:
 
   mysql-db:
     image: mysql
+    # Error: exec /usr/local/bin/docker-entrypoint.sh: exec format error
+    # Description: is an error you get when you try to run a binary for architecture X on a machine with architecture Y, and the machine is not set up to translate CPU instructions from X to Y.
+    # Host plataform: My Mac, Intel chip, running AMD (Apple M1 chip runs ARM)
+    # Fix:
+    platform: linux/arm64
     # container_name: mysql-container
     #V1 - Map vars one by one, if service vars are not named like ".env" file vars:
     # environment:

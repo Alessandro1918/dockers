@@ -5,9 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/server.js",
-    "start:prod": "node src/server.js",
-    "start:compose_dev": "npm install && nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "prod": "node src/server.js",
+    "compose_dev": "npm install && nodemon src/server.js"
   },
   "author": "Ale B. C.",
   "license": "ISC",

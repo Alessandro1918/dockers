@@ -4,10 +4,10 @@ const fs = require("fs")
 //DATABASE_URL = provider://USER:PASSWORD@HOST:PORT/DATABASE
 
 const pool = createPool({
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT,
   database: process.env.MYSQL_DATABASE,
 })
 

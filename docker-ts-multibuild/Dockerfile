@@ -35,14 +35,16 @@ WORKDIR /usr/app
 
 COPY package*.json .
 
+# Do not install the devDependencies:
 RUN npm install --only=production
 
-# "build" is the name of my stage
-# "./dist" is my output directory (set by the tsconfig.json file)
+# "build" is the name of the previous stage;
+# "./dist" is the output directory (set by the tsconfig.json file);
 COPY --from=build /usr/app/dist ./
+
 COPY .env ./
 
-# tsconfig.json set my rootDir to "./", and
-# after build, my "server.ts" is compile to "server.js".
+# tsconfig.json set the rootDir to "./src", and
+# after build, the "server.ts" is compile to "server.js".
 # So, "npx tsx watch src/server.ts" => "node ./server.js"
 CMD ["node", "./server.js"]

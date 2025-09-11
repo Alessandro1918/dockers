@@ -15,6 +15,7 @@ Exemplos de projetos rodando em containers Docker.
 - [Flask](https://flask.palletsprojects.com/en/3.0.x/#)
 - [Postgres](https://www.postgresql.org)
 - [MySql](https://www.mysql.com)
+- [Redis](https://redis.io)
 
 ## 🗂️ Utilização
 

@@ -1,0 +1,33 @@
+# Variables
+@baseUrl = http://localhost:4000
+
+###
+
+# Health check
+# @name healthCheck
+GET {{baseUrl}}
+
+###
+
+# Saves a new key-value pair of data in the db
+# @name saveData
+POST {{baseUrl}}/db
+Content-Type: application/json
+
+{
+  "color": "blue"
+}
+
+###
+
+@key = {{saveData.response.body.$.key}}
+
+###
+
+# Get last saved data
+GET {{baseUrl}}/db?key={{key}}
+
+###
+
+# Get any data
+GET {{baseUrl}}/db?key=flavour

@@ -33,7 +33,7 @@ Exemplos de projetos rodando em containers Docker.
   $ cp .env.example .env       #create the ".env" file like the ".env.example" file
 ```
 
-- Run @ localhost:
+- Terminal 1: Run server @ localhost:
 ```bash
   $ npm install                #download dependencies
   $ npx prisma migrate dev     #if using prisma: init db file and create tables 
@@ -41,14 +41,14 @@ Exemplos de projetos rodando em containers Docker.
   $ python src/server.py       #if python: start the project by running the src/server.py file
 ```
 
-- Run @ Docker (with "docker-compose.yaml"):
+- Terminal 2: Run database client with "docker-compose.yaml":
 ```bash
   $ docker compose up          #build the image and runs the container
   $ ctrl + C                   #stop the container
   $ docker compose down        #delete the container
 ```
 
-- Run @ Docker (with "Dockerfile"):
+- Terminal 2: Run database client with "Dockerfile":
 ```bash
   $ docker build -t name-of-docker-image .     #build the image
   $ docker run [flags] name-of-docker-image    #run the container
